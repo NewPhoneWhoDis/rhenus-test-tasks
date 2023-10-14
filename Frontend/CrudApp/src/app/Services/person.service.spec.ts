@@ -1,11 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
 import { PersonService } from './person.service';
-import { IPerson } from '../Models/IPerson';
+import { IPerson, persons } from '../Models/IPerson';
 
-let persons: IPerson[] = [
-  { id: 1, vorname: 'Max', nachname: 'Mustermann', email: 'max@example.com' },
-];
+let people: IPerson[];
 
 describe('PersonService', () => {
   let service: PersonService;
@@ -13,6 +11,14 @@ describe('PersonService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(PersonService);
+
+    people = persons;
+    service.people = [...people];
+  });
+
+  afterEach(() => {
+    people = [];
+    service.people = [];
   });
 
   it('should be created', () => {
@@ -34,14 +40,14 @@ describe('PersonService', () => {
 
   it('should update a person', () => {
     const updatedPerson = {id: 1, vorname: 'Maxuell', nachname: 'Mustermann', email: 'maxi@example.com'};
-    service.updatePerson(1, updatedPerson);
+    service.updatePerson(updatedPerson.id, updatedPerson);
     const retrievedPerson = service.getPerson(1);
     expect(retrievedPerson).toEqual(updatedPerson);
   });
 
   it('should get a person by id', () => {
     const retrievedPerson = service.getPerson(1);
-    expect(retrievedPerson).toEqual(persons[0]);
+    expect(retrievedPerson).toEqual(people[0]);
   });
 
 });
