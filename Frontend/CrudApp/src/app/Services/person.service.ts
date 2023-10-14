@@ -32,4 +32,8 @@ export class PersonService {
       this.people.splice(index, 1);
     }
   }
+
+  getAllPeople(): IPerson[] {
+    return this.people;
+  }
 }

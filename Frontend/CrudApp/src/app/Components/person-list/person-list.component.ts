@@ -1,3 +1,5 @@
+import { PersonService } from './../../Services/person.service';
+import { IPerson, persons } from './../../Models/IPerson';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonListComponent implements OnInit {
 
-  constructor() { }
+  people: IPerson[] = [];
+
+  constructor(private personService: PersonService) { }
 
   ngOnInit(): void {
+    this.people = this.personService.getAllPeople();
   }
 
 }

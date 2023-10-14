@@ -50,4 +50,9 @@ describe('PersonService', () => {
     expect(retrievedPerson).toEqual(people[0]);
   });
 
+  it('should get all people', () => {
+    const allPeople = service.getAllPeople();
+    expect(allPeople).toEqual(people);
+  });
+
 });
