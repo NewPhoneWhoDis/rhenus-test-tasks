@@ -1,1 +1,7 @@
-<p>person-edit works!</p>
+<form (ngSubmit)="save()">
+    <input [(ngModel)]="currentPerson.vorname" name="vorname" placeholder="Vorname">
+    <input [(ngModel)]="currentPerson.nachname" name="nachname" placeholder="Nachname">
+    <input [(ngModel)]="currentPerson.email" name="email" placeholder="Email">
+    <button type="submit">Save</button>
+</form>
+

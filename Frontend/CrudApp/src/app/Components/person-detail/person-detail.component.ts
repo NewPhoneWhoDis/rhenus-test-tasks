@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IPerson } from 'src/app/Models/IPerson';
 
 @Component({
@@ -8,7 +8,7 @@ import { IPerson } from 'src/app/Models/IPerson';
 })
 export class PersonDetailComponent implements OnInit {
 
-  person!: IPerson;
+  @Input() person!: IPerson;
 
   constructor() { }
 
