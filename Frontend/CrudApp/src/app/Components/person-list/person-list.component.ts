@@ -1,20 +1,31 @@
-import { PersonService } from './../../Services/person.service';
-import { IPerson, persons } from './../../Models/IPerson';
-import { Component, OnInit } from '@angular/core';
+  import { PersonService } from './../../Services/person.service';
+  import { IPerson, persons } from './../../Models/IPerson';
+  import { Component, OnInit, OnDestroy } from '@angular/core';
+  import { Subscription } from 'rxjs';
 
-@Component({
-  selector: 'app-person-list',
-  templateUrl: './person-list.component.html',
-  styleUrls: ['./person-list.component.css']
-})
-export class PersonListComponent implements OnInit {
+  @Component({
+    selector: 'app-person-list',
+    templateUrl: './person-list.component.html',
+    styleUrls: ['./person-list.component.css']
+  })
+  export class PersonListComponent implements OnInit, OnDestroy {
 
-  people: IPerson[] = [];
+    people: IPerson[] = [];
+    private sub!: Subscription;
 
-  constructor(private personService: PersonService) { }
+    constructor(private personService: PersonService) { }
 
-  ngOnInit(): void {
-    this.people = this.personService.getAllPeople();
+    ngOnInit(): void {
+      this.sub = this.personService.people$.subscribe(people => {
+        this.people = people;
+        console.log(this.people);
+      });
+    }
+
+    ngOnDestroy(): void {
+      if (this.sub) {
+        this.sub.unsubscribe();
+      }
+    }
+
   }
-
-}

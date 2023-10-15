@@ -9,7 +9,12 @@ import { PersonService } from 'src/app/Services/person.service';
 })
 export class PersonCreateComponent implements OnInit {
 
-  newPerson!: IPerson;
+  newPerson: IPerson = {
+    id: this.getRandomId(),
+    vorname: '',
+    nachname: '',
+    email: ''
+  };
   
   constructor(private personService: PersonService) { }
   
@@ -18,5 +23,9 @@ export class PersonCreateComponent implements OnInit {
   
   save() {
     this.personService.addPerson(this.newPerson);
+  }
+
+  getRandomId(): number {
+    return Math.floor(Math.random() * 1000000);
   }
 }
