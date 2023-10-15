@@ -1,24 +1,25 @@
 import { TestBed } from '@angular/core/testing';
-
 import { PersonService } from './person.service';
 import { IPerson, persons } from '../Models/IPerson';
-
-let people: IPerson[];
+import { BehaviorSubject } from 'rxjs';
 
 describe('PersonService', () => {
   let service: PersonService;
+  let people: IPerson[];
+  let peopleSubject: BehaviorSubject<IPerson[]>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(PersonService);
 
     people = persons;
-    service.people = [...people];
+    peopleSubject = new BehaviorSubject<IPerson[]>(people);
+    service['peopleSubject'] = peopleSubject;
   });
 
   afterEach(() => {
     people = [];
-    service.people = [];
+    peopleSubject.complete();
   });
 
   it('should be created', () => {
@@ -26,7 +27,7 @@ describe('PersonService', () => {
   });
 
   it('should add a person', () => {
-    const newPerson: IPerson = {id: 2, vorname: 'Anna', nachname: 'Schmidt', email: 'anna@example.com'};
+    const newPerson: IPerson = { id: 2, vorname: 'Anna', nachname: 'Schmidt', email: 'anna@example.com' };
     service.addPerson(newPerson);
     const retrievedPerson = service.getPerson(2);
     expect(retrievedPerson).toEqual(newPerson);
@@ -39,7 +40,7 @@ describe('PersonService', () => {
   });
 
   it('should update a person', () => {
-    const updatedPerson = {id: 1, vorname: 'Maxuell', nachname: 'Mustermann', email: 'maxi@example.com'};
+    const updatedPerson = { id: 1, vorname: 'Maxuell', nachname: 'Mustermann', email: 'maxi@example.com' };
     service.updatePerson(updatedPerson.id, updatedPerson);
     const retrievedPerson = service.getPerson(1);
     expect(retrievedPerson).toEqual(updatedPerson);
@@ -50,9 +51,10 @@ describe('PersonService', () => {
     expect(retrievedPerson).toEqual(people[0]);
   });
 
-  it('should get all people', () => {
-    const allPeople = service.getAllPeople();
-    expect(allPeople).toEqual(people);
+  it('should get all people', (done) => {
+    service.people$.subscribe((allPeople) => {
+      expect(allPeople).toEqual(people);
+      done();
+    });
   });
-
 });
