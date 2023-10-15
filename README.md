@@ -27,6 +27,9 @@ In der Frontend Ordner findet man der code für Aufgabe 2 und in der API Ordner 
 
 - Dann habe ich auch die spec files angepasst damit die auch mit die Änderungen von die Komponenten und den Service zustimmen.
 
+- Ich habe vergessen Delete Komponent hinzüfugen, also ich habe das schnell gemacht auf das gleiche prinzip wie das Edit button.
+
+
 
 
 
