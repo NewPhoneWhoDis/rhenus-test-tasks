@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IPerson } from 'src/app/Models/IPerson';
 
 @Component({
   selector: 'app-person-edit',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./person-edit.component.css']
 })
 export class PersonEditComponent implements OnInit {
-
+  
+  currentPerson!: IPerson;
+  
   constructor() { }
-
+  
   ngOnInit(): void {
   }
-
+  
+  save() {
+  }
 }

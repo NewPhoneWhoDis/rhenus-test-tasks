@@ -20,4 +20,12 @@ describe('PersonDetailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display details of a person', () => {
+    component.person = {id: 1, vorname: 'Max', nachname: 'Mustermann', email: 'max@example.com'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Max Mustermann');
+    expect(compiled.querySelector('p').textContent).toContain('max@example.com');
+});
 });
