@@ -33,4 +33,8 @@
       this.selectedPerson = person;
     }
 
+    onPersonDeleted() {
+      this.selectedPerson = undefined;
+    }
+
   }

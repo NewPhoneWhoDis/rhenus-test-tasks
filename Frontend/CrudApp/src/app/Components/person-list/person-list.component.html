@@ -5,4 +5,5 @@
   </li>
 </ul>
 
-<app-person-detail *ngIf="selectedPerson" [person]="selectedPerson"></app-person-detail>
+<app-person-detail *ngIf="selectedPerson" [person]="selectedPerson" (personDeleted)="onPersonDeleted()"></app-person-detail>
+  

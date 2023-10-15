@@ -9,6 +9,7 @@ import { IPerson } from 'src/app/Models/IPerson';
 export class PersonDetailComponent implements OnInit {
 
   @Output() detailClosed = new EventEmitter<void>();
+  @Output() personDeleted = new EventEmitter<void>();
   @Input() person!: IPerson;
   editMode = false;
   showDelete = true;
@@ -24,5 +25,6 @@ export class PersonDetailComponent implements OnInit {
 
   handlePersonDeleted() {
     this.showDelete = false; 
+    this.personDeleted.emit();
   }
 }

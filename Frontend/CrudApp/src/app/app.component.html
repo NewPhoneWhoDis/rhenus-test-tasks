@@ -4,7 +4,5 @@
 
 <app-person-list></app-person-list>
 
-<app-person-detail *ngIf="view === 'detail'"></app-person-detail>
-
 <app-person-create *ngIf="view === 'create'" (formSubmitted)="hideForm()" 
 (detailClosed)="closeDetail()"></app-person-create>
