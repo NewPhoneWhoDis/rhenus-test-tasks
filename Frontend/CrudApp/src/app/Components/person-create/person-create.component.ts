@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IPerson } from 'src/app/Models/IPerson';
 import { PersonService } from 'src/app/Services/person.service';
 
@@ -15,6 +15,8 @@ export class PersonCreateComponent implements OnInit {
     nachname: '',
     email: ''
   };
+
+  @Output() formSubmitted = new EventEmitter<void>();
   
   constructor(private personService: PersonService) { }
   
@@ -23,6 +25,7 @@ export class PersonCreateComponent implements OnInit {
   
   save() {
     this.personService.addPerson(this.newPerson);
+    this.formSubmitted.emit();
   }
 
   getRandomId(): number {

@@ -9,7 +9,7 @@ import { IPerson } from 'src/app/Models/IPerson';
 })
 export class PersonEditComponent implements OnInit {
   @Output() submitted = new EventEmitter<void>();
-  @Input() currentPerson!: IPerson;
+  @Input() currentPerson?: IPerson;
   
   constructor(private personService: PersonService) { }
   
@@ -17,6 +17,7 @@ export class PersonEditComponent implements OnInit {
   }
   
   save() {
+    if(this.currentPerson)
     this.personService.updatePerson(this.currentPerson.id, this.currentPerson);
     this.submitted.emit()
   }

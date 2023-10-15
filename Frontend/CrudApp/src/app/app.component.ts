@@ -10,16 +10,8 @@ export class AppComponent {
 
   view: 'list' | 'detail' | 'edit' | 'create' | null = null;
 
-  showList() {
-    this.view = 'list';
-  }
-
   showDetail() {
     this.view = 'detail';
-  }
-
-  showEdit() {
-    this.view = 'edit';
   }
 
   showAdd() {

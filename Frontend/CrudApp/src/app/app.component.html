@@ -1,12 +1,9 @@
 <h1>Personenverwaltung</h1>
 
-<button (click)="showList()">Liste anzeigen</button>
 <button (click)="showAdd()">Person hinzufügen</button>
-<button (click)="showEdit()">Person ändern</button>
 
 <app-person-list></app-person-list>
 
 <app-person-detail *ngIf="view === 'detail'"></app-person-detail>
 
-<app-person-edit *ngIf="view === 'edit'" (submitted)="hideForm()"></app-person-edit>
-<app-person-create *ngIf="view === 'create'" (submitted)="hideForm()"></app-person-create>
+<app-person-create *ngIf="view === 'create'" (formSubmitted)="hideForm()"></app-person-create>

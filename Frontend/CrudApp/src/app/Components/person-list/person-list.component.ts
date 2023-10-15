@@ -12,6 +12,7 @@
 
     people: IPerson[] = [];
     private sub!: Subscription;
+    selectedPerson?: IPerson;
 
     constructor(private personService: PersonService) { }
 
@@ -26,6 +27,10 @@
       if (this.sub) {
         this.sub.unsubscribe();
       }
+    }
+
+    selectPerson(person: IPerson) {
+      this.selectedPerson = person;
     }
 
   }

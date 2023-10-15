@@ -9,10 +9,14 @@ import { IPerson } from 'src/app/Models/IPerson';
 export class PersonDetailComponent implements OnInit {
 
   @Input() person!: IPerson;
+  editMode = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+  }
 }
