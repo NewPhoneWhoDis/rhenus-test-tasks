@@ -4,3 +4,6 @@
 <button (click)="toggleEditMode()">Edit</button>
 
 <app-person-edit *ngIf="editMode" [currentPerson]="person" (submitted)="toggleEditMode()"></app-person-edit>
+<ng-container *ngIf="showDelete">
+    <app-person-delete [personId]="person.id" (personDeleted)="handlePersonDeleted()"></app-person-delete>
+</ng-container>

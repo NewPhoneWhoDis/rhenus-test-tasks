@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPerson } from 'src/app/Models/IPerson';
 
 @Component({
@@ -8,8 +8,10 @@ import { IPerson } from 'src/app/Models/IPerson';
 })
 export class PersonDetailComponent implements OnInit {
 
+  @Output() detailClosed = new EventEmitter<void>();
   @Input() person!: IPerson;
   editMode = false;
+  showDelete = true;
 
   constructor() { }
 
@@ -18,5 +20,9 @@ export class PersonDetailComponent implements OnInit {
 
   toggleEditMode() {
     this.editMode = !this.editMode;
+  }
+
+  handlePersonDeleted() {
+    this.showDelete = false; 
   }
 }

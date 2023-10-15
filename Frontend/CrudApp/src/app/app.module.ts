@@ -8,6 +8,7 @@ import { PersonDetailComponent } from './Components/person-detail/person-detail.
 import { PersonEditComponent } from './Components/person-edit/person-edit.component';
 import { PersonCreateComponent } from './Components/person-create/person-create.component';
 import { FormsModule } from '@angular/forms';
+import { PersonDeleteComponent } from './Components/person-delete/person-delete.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     PersonListComponent,
     PersonDetailComponent,
     PersonEditComponent,
-    PersonCreateComponent
+    PersonCreateComponent,
+    PersonDeleteComponent
   ],
   imports: [
     BrowserModule,

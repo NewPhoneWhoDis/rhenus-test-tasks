@@ -21,4 +21,8 @@ export class AppComponent {
   hideForm() {
     this.view = null;
   }
+
+  closeDetail() {
+    this.view = null;
+  }
 }
